@@ -11,13 +11,159 @@
 }
 
 body {
-    font-family: "Open Sans", Arial, sans-serif;
+    /*font-family: "Open Sans", Arial, sans-serif;*/
+    font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     min-height: 100vh;
     background-color: #fafafa;
-    color: #262626;
+    color: #636262;
     padding-bottom: 3rem;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+/*Beginning of flex layout to image profile settings and buttons*/
+
+
+.profile{
+    display:grid;/*flex*/
+    grid-template-columns: repeat(4, 2fr);
+    gap: 20px;
+    /*flex-flow:row wrap; /*used shorthand for flex-direction and flex-wrap*/
+    justify-content: center;
+    margin:auto;
+    text-align: center;
+}
+ /*cat icon renedering*/
+ .profile-image {
+    grid-row: 1/ span 3;
+    width: 300px; /* image kept shrinking , i needed to set a fixed width and height for it*/
+    height: 300px ;/*refrenced the images actual size in folder*/
+    align-self:start;
+    overflow: hidden; 
+    border: 10px solid rgb(7, 78, 45); /*attempted to get the color close enough*/
+    border-radius: 50%; /*made image is round so the border can be round too*/
+   
+}
+  .profile-image img {
+    
+    display: grid;
+    width:100%;
+    height: auto;
+   
+  }
+  
+.profile-user-setting{ 
+   display: flex;
+    flex-direction: column;/* grid-row: 1 / span 2;
+    flex-direction: column;
+    grid-column: 2;
+    margin-left: auto; */
+    width: 100px; 
+    height: auto;
+    align-content: center;
+
+    display: flex;
+  flex-direction: column;
+  gap: 10px; /* Gap between user settings items */
+  
+    }
+
+.profile-stats{
+    grid-row: 2;
+    flex-wrap: wrap;
+    grid-column: 2;
+    padding:1px;
 }
 
-img {
-    display: block;
+.profile-bio{
+    grid-row: 3;
+    flex-wrap: wrap;
+    grid-column: 2;
+    padding:1px;
 }
+.container{
+display:grid;
+justify-content: space-between;
+flex-wrap: wrap;
+justify-content: center;
+padding:0;
+
+}
+  
+.container >.gallery > div > img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+.container > div {
+    flex: 1 1 auto; /*short hand to scale images according to browser window size*/
+}
+.container > .profile > div{
+    display:inline-block;
+}
+.profile-user-setting .profile-stat{
+    display: flex;
+    flex-direction:column;
+}
+.profile-stats ul {
+    list-style-type: none; 
+    padding: 0; 
+    display: flex;
+    gap: 10px; 
+  
+}
+
+.profile-stats li {
+    display: inline-block; 
+    background-color: #fff; 
+    color: rgb(0, 0, 0); 
+    padding: 5px 30px; 
+    border: 1px solid #edede9; 
+    border-radius: 10px; 
+    text-align: center; 
+    cursor: pointer; 
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+    font-size: 1em; 
+}
+.profile-stat-count{
+    box-sizing: border-box;
+    font-weight: bold; 
+    display: block; 
+}
+
+.profile-stats li:hover {
+    background-color: #2e2f31; 
+    color: #fafafa;
+}
+
+/*End of flex layout to image profile settings and buttons*/
+/*Beginning of code for grid layout for images*/
+
+.gallery{
+    display: grid;
+    justify-content: start;
+    align-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2,1fr);
+    gap:20px;
+    padding: 30px;
+    width:auto;
+    height:auto;
+}
+
+.gallery-item :hover{
+    content:""
+    
+
+}
+
+/*Beginning of media queries*/
+@media (max-width: 400px) {
+    .profile-image
+    .profile-user-settings,
+    .profile-stats,
+    .profile-bio {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
