@@ -1,7 +1,7 @@
-/* Base Styles */
-
 :root {
     font-size: 10px;
+    --spinner:#07501D;
+    --spinner-active: green;
 }
 
 *,
@@ -10,22 +10,27 @@
     box-sizing: border-box;
 }
 
+
 body {
+    display:flex; /*to prevent all content from overlaping, new issue is that when window is made smaller the content overlap*/
+    flex-wrap: wrap;
     /*font-family: "Open Sans", Arial, sans-serif;*/
     font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     min-height: 100vh;
     background-color: #fafafa;
     color: #636262;
     padding-bottom: 3rem;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 350px;
+    margin-right: 350px;
+    justify-content: center;
 }
 /*Beginning of flex layout to image profile settings and buttons*/
 
 
 .profile{
     display:grid;/*flex*/
-    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(4, 2fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     /*flex-flow:row wrap; /*used shorthand for flex-direction and flex-wrap*/
     justify-content: center;
@@ -53,18 +58,12 @@ body {
   
 .profile-user-setting{ 
    display: flex;
-    flex-direction: column;/* grid-row: 1 / span 2;
     flex-direction: column;
-    grid-column: 2;
-    margin-left: auto; */
+    grid-row: 1/ span 4;
     width: 100px; 
     height: auto;
     align-content: center;
-
-    display: flex;
-  flex-direction: column;
-  gap: 10px; /* Gap between user settings items */
-  
+    gap: 10px; /* Gap between user settings items */
     }
 
 .profile-stats{
@@ -84,6 +83,7 @@ body {
 display:grid;
 justify-content: space-between;
 flex-wrap: wrap;
+align-content: stretch;
 justify-content: center;
 padding:0;
 
@@ -144,26 +144,47 @@ padding:0;
     justify-content: start;
     align-content: center;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2,1fr);
+    grid-auto-rows: auto;
     gap:20px;
-    padding: 30px;
+    padding-top: 50px;
     width:auto;
     height:auto;
 }
 
 .gallery-item :hover{
     content:""
-    
 
 }
+.container{
+height: 10px;
+  display: grid;
+
+  justify-content: center;
+  align-items: center;
+}
+.loader{
+    width:100px;
+    height:100px;
+    border: 1em solid var(--spinner);
+    border-radius: 50%;
+    border-top: 1em solid var(--spinner-active);
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+ }
 
 /*Beginning of media queries*/
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .profile-image
     .profile-user-settings,
     .profile-stats,
     .profile-bio {
       display: flex;
       flex-wrap: wrap;
+      flex:1 2 0;
     }
   }
